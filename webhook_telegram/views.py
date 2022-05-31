@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from rest_framework.response import Response
 from django.views import View
+from webhook_telegram.models import TgUser, TgMessage
 import telebot
 
 TOKEN = '5429730204:AAE3SkAMhXYVFyWwSRBKlEJCoNTo6A263SM'
@@ -15,6 +16,12 @@ class UpdateBot(View):
         # Сюда должны получать сообщения от телеграм и далее обрабатываться ботом
         json_str = request.body.decode('UTF-8')
         update = telebot.types.Update.de_json(json_str)
+        if not TgUser.objects.filter(tg_id=update.message.chat.id):
+            tg_user = TgUser(tg_id=update.message.chat.id, tg_name=update.message.chat.username).save()
+        else:
+            tg_user = TgUser.objects.filter(tg_id=update.message.chat.id)[0]
+        tg_message = TgMessage(from_id=tg_user, text=update.message.text).save()
+
         bot.process_new_updates([update])
 
         return HttpResponse("ok")

@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-qxo%83_ea7(u0d*qei8b0#bcq7x*#wz_7rb#svrqo&mq22*44n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['9878-217-24-176-109.eu.ngrok.io']
+ALLOWED_HOSTS = ['9878-217-24-176-109.eu.ngrok.io', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'webhook_telegram.apps.WebhookTelegramConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

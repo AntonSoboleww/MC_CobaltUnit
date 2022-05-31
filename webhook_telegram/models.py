@@ -1,11 +1,11 @@
 from django.db import models
 
+
 class TgUser(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    tg_id = models.IntegerField()
+    tg_name = models.CharField(default='Anon', max_length=100)
 
 
-class Message(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+class TgMessage(models.Model):
+	from_id = models.ForeignKey(TgUser, on_delete = models.CASCADE)
+	text = models.TextField()
