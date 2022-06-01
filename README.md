@@ -19,7 +19,11 @@ TODO: когда будут готовы настройки, прописать 
 --
 Django
 environ
+django-environ
 djangorestframework
+pytelegrambotapi
+virtualenvwrapper(-win)(если из под винды)
+(статься с описанием обёртывания на всех операционках https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/development_environment)
 
 Разработка
 ==
@@ -51,7 +55,5 @@ TODO
 --
 (я тестирую через ngrok, так что и инструкция по нему)
 - Запускаем ngrok на порту, который использует Django при запуске(стандарт 8000) `ngrok http 8000`.
-- Копируем полученный токен и идём в настройки бота тг, выбираем "Bot Settings" -> "Domain" -> "Edit Domain". Отправляем урл из нгрока.
-- Затем идём в код. Файл settings.py, массив ALLOWED_HOSTS, добавляем наш домен ngrok без всяких https:// и прочего.
-- После во views.py приложения webhook_telegram и меняем там адрес для вебхука на наш, но уже с https.
-TODO: Добавить в .env урлик, а потом уже подгружать из всех необходимых мест.
+- Копируем полученный урл и идём в настройки бота тг, выбираем "Bot Settings" -> "Domain" -> "Edit Domain". Отправляем урл из нгрока.
+- Открываем файлик .env и вставляем в переменную WEBHOOK_TG_URL полученный урл, а в переменную TOKEN_TG вставляем токен из бота
