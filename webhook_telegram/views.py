@@ -35,5 +35,3 @@ class UpdateBot(View):
 
 bot.remove_webhook()
 bot.set_webhook(url=f"{WEBHOOK_TG_URL}/{TOKEN}")
-
-# Error code: 400. Description: Bad Request: invalid webhook URL specified

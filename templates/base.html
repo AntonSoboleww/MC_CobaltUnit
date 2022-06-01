@@ -1,0 +1,62 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>CobaltUnit</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		{% load static %}
+		<link href="{% static 'tg_chat/style.css' %}" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+	    <div class="text-white bg-dark" id="navbar">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<!-- тут нет свгшки, но отступ прикольно выгляди-->
+		      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+		      <span class="fs-4">CobaltUnit</span>
+		    </a>
+			<hr>
+			<ul class="nav nav-pills flex-column mb-auto">
+		      <li class="nav-item">
+		        <a href="#" class="nav-link active" aria-current="page">
+		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+		          Home
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+		          Dashboard
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+		          Orders
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+		          Products
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+		          Customers
+		        </a>
+		      </li>
+		    </ul>
+	    </div>
+
+	    <div id="content">
+			{% block content %}
+	        {% endblock %}
+	    </div>
+	</body>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="{% static 'tg_chat/scroll.js' %}" ></script>
+</html>
