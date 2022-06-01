@@ -38,24 +38,11 @@
 			                        </li>
 			                    {% endif %}
 							{% endfor %}
-
-		                    <!-- Сообщение с нашей стороны -->
-							<!--
-	                        <li class="clearfix">
-	                            <div class="message-data">
-	                                <span class="message-data-time">10:12 AM, Today</span>
-	                            </div>
-	                            <div class="message my-message">Are we meeting today?</div>                                    
-	                        </li>
-	                    	-->
-
 	                    </ul>
 	                </div>
 	                <div class="chat-message clearfix">
 	                    <div class="input-group mb-0">
-	                    	<form id="content-form" action="/tg_chat/send_message/" method="post" style="width: 100%"> {% csrf_token %}
-			                    <input type="text" class="form-control" name="message" placeholder="Enter text here...">
-	                    	</form>
+		                    <input id="message-input" type="text" class="form-control" name="message" placeholder="Enter text here...">
 	                    </div>
 	                </div>
 	            </div>

@@ -5,7 +5,7 @@ from webhook_telegram.models import TgUser, TgDialog
 import telebot
 import datetime, time
 
-from CobaltUnit.settings import TOKEN_TG, WEBHOOK_TG_URL
+from CobaltUnit.settings import TOKEN_TG, URL
 
 TOKEN = TOKEN_TG
 
@@ -34,4 +34,4 @@ class UpdateBot(View):
         return HttpResponse("ok")
 
 bot.remove_webhook()
-bot.set_webhook(url=f"{WEBHOOK_TG_URL}/{TOKEN}")
+bot.set_webhook(url=f"{URL}/{TOKEN}")

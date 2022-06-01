@@ -25,6 +25,7 @@ def index(request, tg_user_id):
 
 class SendTelegramMessage(APIView):
     def post(self, request):
+        print(request.data)
         bot = telebot.TeleBot(TOKEN)
         bot.send_message("513065450", text=request.data['message'], parse_mode='HTML')
         tg_message = TgDialog(from_id=513065450, text=request.data['message'], is_user=False).save()

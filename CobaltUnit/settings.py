@@ -24,13 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env().read_env(os.path.join(BASE_DIR, '.env'))
 
+# URL
+URL = env('URL')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # Token для ТГ бота
 TOKEN_TG = env('TOKEN_TG')
-# Вебхук для телеграмма
-WEBHOOK_TG_URL = env('WEBHOOK_TG_URL')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -38,7 +39,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [WEBHOOK_TG_URL.replace("https://", "").replace("http://", ""), '127.0.0.1']
+ALLOWED_HOSTS = [URL.replace("https://", "").replace("http://", ""), '127.0.0.1']
 
 # Application definition
 
