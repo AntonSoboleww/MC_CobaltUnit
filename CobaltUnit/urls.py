@@ -18,5 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('webhook_telegram.urls')),
+    path('tg_chat/', include('tg_chat.urls')),
     path('admin/', admin.site.urls),
 ]
