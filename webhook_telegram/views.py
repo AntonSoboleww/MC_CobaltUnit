@@ -5,7 +5,9 @@ from webhook_telegram.models import TgUser, TgDialog
 import telebot
 import datetime, time
 
-TOKEN = '5429730204:AAE3SkAMhXYVFyWwSRBKlEJCoNTo6A263SM'
+from CobaltUnit.settings import TOKEN_TG, WEBHOOK_TG_URL
+
+TOKEN = TOKEN_TG
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -31,12 +33,7 @@ class UpdateBot(View):
 
         return HttpResponse("ok")
 
-
-@bot.message_handler(content_types=['text'])
-def start_message(message):
-    bot.send_message(message.chat.id, text="Hello!", parse_mode='HTML')
-
 bot.remove_webhook()
-bot.set_webhook(url=f"https://9878-217-24-176-109.eu.ngrok.io/{TOKEN}")
+bot.set_webhook(url=f"{WEBHOOK_TG_URL}/{TOKEN}")
 
 # Error code: 400. Description: Bad Request: invalid webhook URL specified

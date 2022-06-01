@@ -11,22 +11,34 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env().read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+# Token для ТГ бота
+TOKEN_TG = env('TOKEN_TG')
+# Вебхук для телеграмма
+WEBHOOK_TG_URL = env('WEBHOOK_TG_URL')
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qxo%83_ea7(u0d*qei8b0#bcq7x*#wz_7rb#svrqo&mq22*44n'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['9878-217-24-176-109.eu.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = [WEBHOOK_TG_URL.replace("https://", "").replace("http://", ""), '127.0.0.1']
 
 # Application definition
 
