@@ -34,4 +34,4 @@ class UpdateBot(View):
         return HttpResponse("ok")
 
 bot.remove_webhook()
-bot.set_webhook(url=f"{URL}/{TOKEN}")
+bot.set_webhook(url=f"{URL}/webhook_tg/{TOKEN}")
