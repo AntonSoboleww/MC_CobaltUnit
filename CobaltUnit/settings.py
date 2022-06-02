@@ -30,6 +30,9 @@ URL = env('URL')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+# Token для ВК бота
+VK_SECURITY_KEY = env('VK_SECURITY_KEY')
+
 # Token для ТГ бота
 TOKEN_TG = env('TOKEN_TG')
 
@@ -45,6 +48,8 @@ ALLOWED_HOSTS = [URL.replace("https://", "").replace("http://", ""), '127.0.0.1'
 
 INSTALLED_APPS = [
     'webhook_telegram.apps.WebhookTelegramConfig',
+    'webhook_vk.apps.WebhookVkConfig',
+    'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

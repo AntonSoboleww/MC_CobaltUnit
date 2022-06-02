@@ -18,8 +18,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path('webhook_tg/', include('webhook_telegram.urls')),
-    path('webhook_vk/', include('webhook_telegram.urls')),
-    path('', include('tg_chat.urls')),
-    path('tg_chat/', include('tg_chat.urls')),
+    path('webhook_vk/', include('webhook_vk.urls')),
+    path('user/', include('user.urls')),
+    path('', include('chat.urls')),
+    path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
 ]
