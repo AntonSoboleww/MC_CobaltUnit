@@ -1,43 +1,50 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from user.models import Dialog, User
-
+import random
+import requests
 import telebot
-from datetime import datetime
+from django.utils import timezone
+import datetime
 
-import json
-from django.core import serializers
 from django.forms.models import model_to_dict
 
-TOKEN = '5429730204:AAE3SkAMhXYVFyWwSRBKlEJCoNTo6A263SM'
+from user.models import Dialog, User
+
+from CobaltUnit.settings import TOKEN_TG, TOKEN_VK
 
 
 def chat(request, user_id):
-    users = User.objects.order_by('-id')
-
-    template = "chat/chat.html"
-
-    return render(request, template, { 'users': users })
+    return get_users(request, "chat/chat.html")
 
 
 def user_list(request):
-    users = TgUser.objects.order_by('-id')
+    return get_users(request, "chat/user_list.html")
 
-    template = "chat/user_list.html"
 
+def get_users(request, template):
+    users = User.objects.order_by('-id')
     return render(request, template, { 'users': users })
 
 
 class SendMessage(APIView):
     def post(self, request):
-        bot = telebot.TeleBot(TOKEN)
-        bot.send_message(request.data['user_id'], text=request.data['message'], parse_mode='HTML')
+        user = User.objects.get(pk=request.data['user_id'])
 
-        tg_message = Dialog(from_id=request.data['user_id'], text=request.data['message'], date=datetime.now(), is_user=False)
-        tg_message.save()
+        if user.app == "TG":
+            bot = telebot.TeleBot(TOKEN_TG)
+            bot.send_message(user.user_id, text=request.data['message'], parse_mode='HTML')
+        elif user.app == "VK":
+            requests.post("https://api.vk.com/method/messages.send", params={
+                "peer_id": user.user_id,
+                "access_token": TOKEN_VK,
+                "message": request.data['message'],
+                "v": "5.131",
+                "random_id": random.randint(0, 100000)
+            })
 
-        return Response({"code": 200, "response": model_to_dict(tg_message)})
+        message = Dialog(from_id=user.user_id, text=request.data['message'], date=datetime.datetime.now(tz=timezone.utc), is_user=False)
+        message.save()
+
+        return Response({"code": 200, "response": model_to_dict(message)})

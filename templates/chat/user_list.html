@@ -5,7 +5,7 @@
     <div id="plist" class="people-list people-center">
         <ul class="list-unstyled chat-list mt-2 mb-0">
 			{% for u in users %}
-        	<a href="http://127.0.0.1:8000/chat/{{ u.user_id }}"><li class="clearfix">
+        	<a href="http://127.0.0.1:8000/chat/{{ u.id }}"><li class="clearfix">
                 <div class="about">
                     <div class="name">{{ u.name }}</div>
                     <!-- Время последнего сообщения и само сообщение -->

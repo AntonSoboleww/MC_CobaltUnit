@@ -31,7 +31,7 @@ URL = env('URL')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # Token для ВК бота
-VK_SECURITY_KEY = env('VK_SECURITY_KEY')
+TOKEN_VK = env('TOKEN_VK')
 
 # Token для ТГ бота
 TOKEN_TG = env('TOKEN_TG')

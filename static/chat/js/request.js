@@ -90,32 +90,31 @@ let first_response = true
 // Метод проверки новых сообщений(не совсем проверки новых, скорее обновление старых)
 // Делает запрос, получает все мэсседжи в чате, выводит их в элемент
 function check() { 
-	  $.ajax({
+	$.ajax({
 	    type: 'POST',
 		beforeSend: function(request) {
 		  request.setRequestHeader("Content-Type", "application/json");
 		  request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
 		},
 	    url: '/user/get_messages/',
-	    data: `{ 
+	    data: `{
 	    	"user_id" : "${window.location.pathname.split("/")[2]}"
 	    }`,
 	    success: (result) => {
-
 	      elem = getElem();
 
 	      result.response.forEach(function(item, i, arr) { // Наполняем чат сообщениями
 	      	elem.append(addChat(item)); // Вносим сообщения в чат
 	      });
 
-	      if (first_response == true) { // Если мы первый раз загрузили страницу, то скролим вниз
+	      if (first_response) { // Если мы первый раз загрузили страницу, то скролим вниз
 		      scrollDown();
 		      first_response = false;
 	      }
 
 	      setTimeout(check, 5000); // Через 5 секунд вызываем функцию вновь
 	    }
-	  });
+	});
 };
 
 (function() {
