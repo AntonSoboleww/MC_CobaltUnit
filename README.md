@@ -34,6 +34,8 @@ djangorestframework
 
 pytelegrambotapi
 
+requests
+
 virtualenvwrapper(-win)(если из под винды)
 
 (статься с описанием обёртывания на всех операционках https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/development_environment)
