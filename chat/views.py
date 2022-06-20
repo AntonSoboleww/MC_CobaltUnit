@@ -12,7 +12,7 @@ from django.forms.models import model_to_dict
 
 from user.models import Dialog, User
 
-from CobaltUnit.settings import TOKEN_TG, TOKEN_VK
+from CobaltUnit.settings import TOKEN_TG, TOKEN_VK, URL
 
 
 def chat(request, user_id):
@@ -25,7 +25,7 @@ def user_list(request):
 
 def get_users(request, template):
     users = User.objects.order_by('-id')
-    return render(request, template, { 'users': users })
+    return render(request, template, { 'users': users, 'URL': URL })
 
 
 class SendMessage(APIView):
